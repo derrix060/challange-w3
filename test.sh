@@ -17,10 +17,12 @@ function wait_for_webapp_start {
 wait_for_webapp_start
 
 # Check getting a wrong key
-curl -v http://localhost:5001/key/wrong_key 2>&1 | grep "HTTP/1.0 404 NOT FOUND"
+rtn=$(curl -v http://localhost:5001/key/wrong_key 2>&1)
+echo $rtn | grep "HTTP/1.0 404 NOT FOUND"
 
 # Test adding wrong value
-curl -v -X PUT http://localhost:5000/key -H 'Content-Type: application/json' -d '{"wrong_key": "wrong_value"}' 2>&1 | grep "HTTP/1.0 500 INTERNAL SERVER ERROR"
+rtn=$(curl -v -X PUT http://localhost:5000/key -H 'Content-Type: application/json' -d '{"wrong_key": "wrong_value"}' 2>&1)
+echo $rtn | grep "HTTP/1.0 500 INTERNAL SERVER ERROR"
 
 $ Test adding correct value
 rtn=$(curl -v -X PUT http://localhost:5000/key -H 'Content-Type: application/json' -d '{"key": "key1", "value": "value2"}' 2>&1)
