@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -euo pipefail
+set -euxo pipefail
 
 function wait_for_webapp_start {
     n=0
@@ -11,7 +11,7 @@ function wait_for_webapp_start {
         sleep 1
     done
     echo "Unable to start webapp"
-    exit 1
+    return 1
 }
 
 wait_for_webapp_start
