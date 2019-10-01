@@ -16,7 +16,6 @@ def error_handler(error):
 @app.route('/key', methods=['PUT'])
 def put_key():
     pair = request.json
-    print(pair)
     key = pair['key']
     value = pair['value']
     # Delete old keys.  Since there is no business logic involved in the
@@ -34,9 +33,7 @@ def get_key(key):
     # Return 404 when no data
     if not db.exists(key):
         return 'Key "{}" not found.'.format(key), 404
-    print('getting value')
     value = db.get(key).decode()
-    print(value)
     # Return key and value with a status code of 200.
     return '{"key": "%s", "value": "%s"}' % (key, value), 200
 
