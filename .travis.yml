@@ -1,0 +1,16 @@
+git:
+  depth: 10
+
+language: python
+
+services:
+  - docker
+
+addons:
+  apt:
+    packages:
+      - curl
+script:
+  - docker-compose build
+  - docker-compose up -d
+  - bash test.sh
