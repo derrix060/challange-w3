@@ -5,7 +5,7 @@ from flask import request
 from flask import abort
 
 app = Flask(__name__)
-db = redis.Redis('localhost')
+db = redis.Redis('w3-redis')
 
 
 @app.errorhandler(Exception)
