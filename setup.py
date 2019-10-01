@@ -17,7 +17,7 @@ test_requires = [
 ]
 
 setuptools.setup(
-    name='w3-challenge',
+    name='challenge_w3',
     version='1.0.0',
     author='Mario Apra',
     author_email='mariotapra@gmail.com',
@@ -30,5 +30,11 @@ setuptools.setup(
     package_dir={'challenge_w3': 'challenge_w3'},
     install_requires=install_requires,
     tests_require=test_requires,
-    zip_safe=False
+    zip_safe=False,
+    entry_points={
+        'console_scripts': [
+            'challenge_w3 = challenge_w3.api:main',
+        ],
+        'gui_scripts': []
+    },
 )

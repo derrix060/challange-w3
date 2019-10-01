@@ -40,6 +40,9 @@ def get_key(key):
     # Return key and value with a status code of 200.
     return '{"key": "%s", "value": "%s"}' % (key, value), 200
 
+def main():
+    app.run(debug=True, port=5000, host='0.0.0.0')
+
 
 if __name__ == "__main__":
-    app.run()
+    main()
