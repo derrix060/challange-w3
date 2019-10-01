@@ -17,14 +17,17 @@ function wait_for_webapp_start {
 wait_for_webapp_start
 
 # Check getting a wrong key
-[[ $(curl -s -o /dev/null -I -w "%{http_code}" http://localhost:5000/key/wrong_key) -eq 404 ]]
+curl -v http://localhost:5001/key/wrong_key 2>&1 | grep "HTTP/1.0 404 NOT FOUND"
 
 # Test adding wrong value
-curl -v --silent -X PUT http://localhost:5000/key -H 'Content-Type: application/json' -d '{"wrong_key": "wrong_value"}' 2>&1 | grep "HTTP/1.0 500 INTERNAL SERVER ERROR"
+curl -v -X PUT http://localhost:5000/key -H 'Content-Type: application/json' -d '{"wrong_key": "wrong_value"}' 2>&1 | grep "HTTP/1.0 500 INTERNAL SERVER ERROR"
 
 $ Test adding correct value
-[[ $(curl -X PUT http://localhost:5000/key -H 'Content-Type: application/json' -d '{"key": "key1", "value": "value2"}') == "Pair \"{'key': 'key1', 'value': 'value2'}\" saved." ]]
+rtn=$(curl -v -X PUT http://localhost:5000/key -H 'Content-Type: application/json' -d '{"key": "key1", "value": "value2"}' 2>&1)
+echo $rtn | grep "Pair \"{'key': 'key1', 'value': 'value2'}\" saved."
+echo $rtn | grep "HTTP/1.0 202 ACCEPTED"
 
 # Test quering correct value
-[[ $(curl -s -o /dev/null -I -w "%{http_code}" http://localhost:5000/key/key1) -eq 200 ]]
-[[ $(curl http://localhost:5000/key/key1) == '{"key": "key1", "value": "value2"}' ]]
+rtn=$(curl -v http://localhost:5000/key/key1  2>&1)
+echo $rtn | grep "HTTP/1.0 200 OK"
+echo $rtn | grep '{"key": "key1", "value": "value2"}'
