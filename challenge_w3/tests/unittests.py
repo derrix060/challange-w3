@@ -3,7 +3,6 @@ import unittest
 from challenge_w3 import api
 
 
-
 class testClass(unittest.TestCase):
 
     def setUp(self):
@@ -35,7 +34,6 @@ class testClass(unittest.TestCase):
         self.headers.append(('Content-Length', len(self.valid_data)))
         rf = self.put(self.valid_data)
         self.assertEqual(rf.status_code, 500)
-
 
     # TODO: check how to mock redis.
     # def test_get_not_found(self):

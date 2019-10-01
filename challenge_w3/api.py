@@ -2,7 +2,6 @@ import redis
 
 from flask import Flask
 from flask import request
-from flask import abort
 
 app = Flask(__name__)
 db = redis.Redis('w3-redis')
@@ -27,7 +26,6 @@ def put_key():
     return 'Pair "{}" saved.\n'.format(pair), 202
 
 
-
 @app.route('/key/<key>', methods=['GET'])
 def get_key(key):
     # Return 404 when no data
@@ -36,6 +34,7 @@ def get_key(key):
     value = db.get(key).decode()
     # Return key and value with a status code of 200.
     return '{"key": "%s", "value": "%s"}' % (key, value), 200
+
 
 def main():
     app.run(debug=True, port=5000, host='0.0.0.0')
