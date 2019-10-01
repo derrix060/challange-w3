@@ -3,24 +3,15 @@ git:
 
 language: python
 
-services:
-  - docker
-stages:
-  - pep8
-  - build
-
 jobs:
   include:
     - stage: "pep8"
-      name: "Run pep8"
       script:
-        - python -m pip install pycodestyle flake8
-        - python -m pycodestyle challenge_w3
-        - python -m flake8 challenge_w3
-
+      - python -m pip install pycodestyle flake8
+      - python -m pycodestyle challenge_w3
+      - python -m flake8 challenge_w3
     - stage: "build"
-        name: "Build compose"
-        script:
-          - docker-compose build
-          - docker-compose up &
-          - bash test.sh
+      script:
+        - docker-compose build
+        - docker-compose up &
+        - bash test.sh
