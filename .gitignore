@@ -3,7 +3,10 @@ ENV/
 
 # Eggs files
 .eggs/
+*.egg
 w3_challenge.egg-info/
+challenge_w3.egg-info/
+build/lib/
 
 # Vscode configuration
 .vscode/
