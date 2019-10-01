@@ -1,7 +1,7 @@
 version: "3.3"
 
 services:
-  webapp:
+  w3-webapp:
     build: .
     networks:
       - default
@@ -9,13 +9,13 @@ services:
       - 5000:5000
     container_name: w3-webapp
 
-  redis:
+  w3-redis:
     image: docker.io/library/redis:alpine
     networks:
       - default
     ports:
       - 6379:6379
-    container_name: redis
+    container_name: w3-redis
 
 
 networks:
