@@ -1,7 +1,11 @@
 # challange-w3
 
 ## How to use
-TODO
+Make sure to have docker-compose installed on your machine.  If you don't have, just run `pip install docker-compose`.
+
+1. build the container for the webapp: `docker-compose build`.
+2. Start containers (webapp and redis): `docker-compose up`
+3. That's it.  The server will be available on `http://localhost:5000/`.
 
 ## Challenge
 
