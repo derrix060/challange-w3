@@ -1,5 +1,7 @@
 # challange-w3
 
+[![Build Status](https://travis-ci.com/derrix060/challange-w3.svg?branch=master)](https://travis-ci.com/derrix060/challange-w3)
+
 ## How to use
 Make sure to have docker-compose installed on your machine.  If you don't have, just run `pip install docker-compose`.
 
