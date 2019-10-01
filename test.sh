@@ -17,7 +17,7 @@ function wait_for_webapp_start {
 wait_for_webapp_start
 
 # Check getting a wrong key
-rtn=$(curl -v http://localhost:5001/key/wrong_key 2>&1)
+rtn=$(curl -v http://localhost:5000/key/wrong_key 2>&1)
 echo $rtn | grep "HTTP/1.0 404 NOT FOUND"
 
 # Test adding wrong value
