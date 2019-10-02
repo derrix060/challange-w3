@@ -17,7 +17,7 @@ data "template_file" "app" {
   template = file("./terraform/app.json.tpl")
 
   vars = {
-    app_image      = "alpine"
+    app_image      = "691083515862.dkr.ecr.ap-northeast-1.amazonaws.com/web-app:master"
     app_port       = var.app_port
     fargate_cpu    = var.fargate_cpu
     fargate_memory = var.fargate_memory
