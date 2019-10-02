@@ -13,3 +13,7 @@ build/lib/
 
 # Python compile
 *.pyc
+
+# Terraform
+.terraform*
+terraform.*
