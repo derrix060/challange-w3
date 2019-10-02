@@ -2,9 +2,7 @@
     {
       "name": "web-app",
       "image": "${app_image}",
-      "cpu": ${fargate_cpu},
-      "memory": ${fargate_memory},
-      "networkMode": "awsvpc",
+      "cpu": 0,
       "portMappings": [
         {
           "containerPort": ${app_port},
@@ -13,11 +11,9 @@
       ]
     },
     {
-      "name": "w3-redis",
+      "name": "redis",
       "image": "docker.io/library/redis:alpine",
-      "cpu": ${fargate_cpu},
-      "memory": ${fargate_memory},
-      "networkMode": "awsvpc",
+      "cpu": 0,
       "portMappings": [
         {
           "containerPort": 6379,
