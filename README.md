@@ -2,7 +2,11 @@
 
 [![Build Status](https://travis-ci.com/derrix060/challange-w3.svg?branch=master)](https://travis-ci.com/derrix060/challange-w3)
 
-## How to use
+## Production
+Currently the app is running on http://load-balancer-1083511460.ap-northeast-1.elb.amazonaws.com:5000 (This URL is the load-balancer URL that terraform that runs on Travis returns.  You can see it [here](https://travis-ci.com/derrix060/challange-w3/jobs/241042397)).
+
+
+## How to run locally
 Make sure to have docker-compose installed on your machine.  If you don't have, just run `pip install docker-compose`.
 
 1. build the container for the webapp: `docker-compose build`.
