@@ -9,17 +9,21 @@ env:
 
 jobs:
   include:
-    - stage: "Check pep8"
+    - stage: "Sanity Check"
       script:
       - python -m pip install pycodestyle flake8
       - python -m pycodestyle challenge_w3
       - python -m flake8 challenge_w3
-    - stage: "Test app"
+    - stage: "Test"
       script:
         - docker-compose build
         - docker-compose up &
         - bash test.sh
-    - stage: "Push docker image"
+    - stage: "Test"
+      script:
+        - ./bin/terraform init terraform
+        - ./bin/terraform plan terraform
+    - stage: "Publish"
       script:
         - pip install awscli
         - $(aws ecr get-login --no-include-email --region ap-northeast-1)
@@ -28,11 +32,7 @@ jobs:
         - docker tag web-app:latest 691083515862.dkr.ecr.ap-northeast-1.amazonaws.com/web-app:${TRAVIS_BRANCH}
         - docker push 691083515862.dkr.ecr.ap-northeast-1.amazonaws.com/web-app:${TRAVIS_BRANCH}.${COMMIT}
         - docker tag web-app:latest 691083515862.dkr.ecr.ap-northeast-1.amazonaws.com/web-app:${TRAVIS_BRANCH}
-    - stage: "Test terraform"
-      script:
-        - ./bin/terraform init terraform
-        - ./bin/terraform plan terraform
-    - stage: "Apply terraform"
+    - stage: "Publish"
       script:
         - ./bin/terraform init terraform
         - ./bin/terraform apply -auto-approve terraform
