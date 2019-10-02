@@ -8,7 +8,15 @@
           "containerPort": ${app_port},
           "hostPort": ${app_port}
         }
-      ]
+      ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+            "awslogs-group": "awslogs-web-app",
+            "awslogs-region": "${region}",
+            "awslogs-stream-prefix": "awslogs-web-app-stream"
+        }
+      }
     },
     {
       "name": "redis",
@@ -19,6 +27,14 @@
           "containerPort": 6379,
           "hostPort": 6379
         }
-      ]
+      ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+            "awslogs-group": "awslogs-redis",
+            "awslogs-region": "${region}",
+            "awslogs-stream-prefix": "awslogs-redis-stream"
+        }
+      }
     }
   ]
