@@ -10,6 +10,7 @@ env:
 jobs:
   include:
     - stage: "Sanity Check"
+      name: "PEP8 syntax check"
       script:
       - python -m pip install pycodestyle flake8
       - python -m pycodestyle challenge_w3
