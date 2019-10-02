@@ -19,7 +19,7 @@
       }
     },
     {
-      "name": "redis",
+      "name": "w3-redis",
       "image": "docker.io/library/redis:alpine",
       "cpu": 0,
       "portMappings": [
