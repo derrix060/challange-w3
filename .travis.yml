@@ -35,7 +35,7 @@ jobs:
         - docker tag web-app:latest 691083515862.dkr.ecr.ap-northeast-1.amazonaws.com/web-app:${TRAVIS_BRANCH}.${COMMIT}
         - docker tag web-app:latest 691083515862.dkr.ecr.ap-northeast-1.amazonaws.com/web-app:${TRAVIS_BRANCH}
         - docker push 691083515862.dkr.ecr.ap-northeast-1.amazonaws.com/web-app:${TRAVIS_BRANCH}.${COMMIT}
-        - docker tag web-app:latest 691083515862.dkr.ecr.ap-northeast-1.amazonaws.com/web-app:${TRAVIS_BRANCH}
+        - docker push 691083515862.dkr.ecr.ap-northeast-1.amazonaws.com/web-app:${TRAVIS_BRANCH}
     - stage: "Publish"
       name: "Apply changes on Terraform"
       script:
