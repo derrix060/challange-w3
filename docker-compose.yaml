@@ -5,6 +5,8 @@ services:
     build: .
     networks:
       - default
+    environment: 
+      - REDIS_URL=w3-redis
     ports:
       - 5000:5000
     container_name: w3-webapp

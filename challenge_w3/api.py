@@ -1,10 +1,12 @@
+import os
+
 import redis
 
 from flask import Flask
 from flask import request
 
 app = Flask(__name__)
-db = redis.Redis('w3-redis')
+db = redis.Redis(os.environ.get('REDIS_URL', 'localhost'))
 
 
 @app.errorhandler(Exception)
