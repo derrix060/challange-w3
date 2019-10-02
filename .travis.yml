@@ -15,15 +15,18 @@ jobs:
       - python -m pycodestyle challenge_w3
       - python -m flake8 challenge_w3
     - stage: "Test"
+      name: "Build docker"
       script:
         - docker-compose build
         - docker-compose up &
         - bash test.sh
     - stage: "Test"
+      name: "Create a plan for terraform"
       script:
         - ./bin/terraform init terraform
         - ./bin/terraform plan terraform
     - stage: "Publish"
+      name: "Publish docker image"
       script:
         - pip install awscli
         - $(aws ecr get-login --no-include-email --region ap-northeast-1)
@@ -33,6 +36,7 @@ jobs:
         - docker push 691083515862.dkr.ecr.ap-northeast-1.amazonaws.com/web-app:${TRAVIS_BRANCH}.${COMMIT}
         - docker tag web-app:latest 691083515862.dkr.ecr.ap-northeast-1.amazonaws.com/web-app:${TRAVIS_BRANCH}
     - stage: "Publish"
+      name: "Apply changes on Terraform"
       script:
         - ./bin/terraform init terraform
         - ./bin/terraform apply -auto-approve terraform
