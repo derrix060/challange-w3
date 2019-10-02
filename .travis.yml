@@ -21,7 +21,7 @@ jobs:
         - bash test.sh
     - stage: "push image"
       script:
-        - pip install --user awscli
+        - pip install awscli
         - $(aws ecr get-login --no-include-email --region ap-northeast-1)
         - docker build -t web-app .
         - docker tag web-app:latest 691083515862.dkr.ecr.ap-northeast-1.amazonaws.com/web-app:${TRAVIS_BRANCH}.${COMMIT}
