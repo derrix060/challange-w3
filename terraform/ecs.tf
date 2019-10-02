@@ -21,6 +21,7 @@ data "template_file" "app" {
     app_port       = var.app_port
     fargate_cpu    = var.fargate_cpu
     fargate_memory = var.fargate_memory
+    region         = var.region
   }
 }
 
