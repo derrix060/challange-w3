@@ -6,8 +6,18 @@ variable "app_port" {
 
 
 provider "aws" {
+  version = "~> 2.30"
   profile                 = "default"
   region                  = "ap-northeast-1"
+}
+
+terraform {
+  backend "s3" {
+    encrypt = true
+    bucket = "mario-terraform-remote-state-storage"
+    region = "ap-northeast-1"
+    key = "aws-state"
+  }
 }
 
 output "lb_hostname" {
