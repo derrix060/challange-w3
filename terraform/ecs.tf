@@ -3,26 +3,6 @@ resource "aws_ecs_cluster" "main" {
 }
 
 
-resource "aws_iam_role" "app-service-role" {
-  name = "app-service-role"
-
-  assume_role_policy = <<EOF
-{
-  "Statement": [
-    {
-      "Action": "sts:AssumeRole",
-      "Principal": {
-        "Service": "ec2.amazonaws.com"
-      },
-      "Effect": "Allow",
-      "Sid": ""
-    }
-  ]
-}
-EOF
-}
-
-
 variable "fargate_cpu" {
   description = "Fargate instance CPU units to provision (1 vCPU = 1024 CPU units)"
   default     = "1024"
@@ -47,7 +27,7 @@ data "template_file" "app" {
 
 resource "aws_ecs_task_definition" "app" {
   family                   = "app-task"
-  execution_role_arn       = aws_iam_role.app-service-role.arn
+  execution_role_arn       = aws_iam_role.ecs_task_execution_role.arn
   network_mode             = "awsvpc"
   requires_compatibilities = ["FARGATE"]
   cpu                      = 256
