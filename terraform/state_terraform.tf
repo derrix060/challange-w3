@@ -1,3 +1,14 @@
+
+terraform {
+  backend "s3" {
+    encrypt        = true
+    bucket         = "mario-terraform-remote-state-storage"
+    region         = "ap-northeast-1"
+    key            = "aws-state"
+    dynamodb_table = "terraform-state-lock-dynamo"
+  }
+}
+
 # create an S3 bucket to store the state file in
 resource "aws_s3_bucket" "mario-terraform-state-storage" {
     bucket = "mario-terraform-remote-state-storage"

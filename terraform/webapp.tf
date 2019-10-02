@@ -15,14 +15,6 @@ provider "aws" {
   region  = var.region
 }
 
-terraform {
-  backend "s3" {
-    encrypt = true
-    bucket  = "mario-terraform-remote-state-storage"
-    region  = "ap-northeast-1"
-    key     = "aws-state"
-  }
-}
 
 output "lb_hostname" {
   value = aws_lb.main.dns_name
