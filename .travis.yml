@@ -40,5 +40,5 @@ jobs:
       name: "Apply changes on Terraform"
       script:
         - ./bin/terraform init terraform
-        - ./bin/terraform apply -auto-approve terraform
+        - ./bin/terraform destroy -auto-approve terraform
       if: branch = master
